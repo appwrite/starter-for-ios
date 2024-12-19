@@ -8,15 +8,18 @@ class AppwriteSDK: ObservableObject {
     private let account: Account
     private let databases: Databases
     
-    // TODO: Change this your Project ID
-    private let PROJECT_ID = "my-project-id"
-    
-    // TODO: Change this your Project Name
-    private let PROJECT_NAME = "My project name"
-    
-    private let PUBLIC_APPWRITE_ENDPOINT = "https://cloud.appwrite.io/v1"
+    /// Change these in Config.plist
+    private let PROJECT_ID: String
+    private let PROJECT_NAME: String
+    private let PUBLIC_APPWRITE_ENDPOINT: String
     
     init() {
+        let config = AppwriteSDK.loadConfig()
+        
+        self.PROJECT_ID = config.projectId
+        self.PROJECT_NAME = config.projectName
+        self.PUBLIC_APPWRITE_ENDPOINT = config.endpoint
+        
         client = Client()
             .setProject(PROJECT_ID)
             .setEndpoint(PUBLIC_APPWRITE_ENDPOINT)
@@ -96,5 +99,19 @@ class AppwriteSDK: ObservableObject {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, HH:mm"
         return formatter.string(from: Date())
+    }
+    
+    /// Loads configuration values from the Config.plist file.
+    /// - Returns: A tuple containing the project ID, project name, and endpoint URL as strings.
+    private static func loadConfig() -> (projectId: String, projectName: String, endpoint: String) {
+        guard let configPath = Bundle.main.path(forResource: "Config", ofType: "plist"),
+              let config = NSDictionary(contentsOfFile: configPath) as? [String: Any],
+              let projectId = config["APPWRITE_PROJECT_ID"] as? String,
+              let projectName = config["APPWRITE_PROJECT_NAME"] as? String,
+              let endpoint = config["APPWRITE_PUBLIC_ENDPOINT"] as? String else {
+            fatalError("Missing or invalid Config.plist or required keys")
+        }
+        
+        return (projectId, projectName, endpoint)
     }
 }

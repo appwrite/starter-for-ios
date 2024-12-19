@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		92ADF0512D09736D00BCCA85 /* Appwrite in Frameworks */ = {isa = PBXBuildFile; productRef = 92ADF0502D09736D00BCCA85 /* Appwrite */; };
-		92B5189E2D13E913001DB0CF /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 92B5189D2D13E913001DB0CF /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -121,7 +120,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92B5189E2D13E913001DB0CF /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
