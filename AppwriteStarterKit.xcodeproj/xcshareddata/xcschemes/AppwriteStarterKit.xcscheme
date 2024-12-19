@@ -36,8 +36,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "92EFE9152CF9A50100D1DE48"
-               BuildableName = "CheckeredBackgroundTests.xctest"
-               BlueprintName = "CheckeredBackgroundTests"
+               BuildableName = "AppwriteStarterKitTests.xctest"
+               BlueprintName = "AppwriteStarterKitTests"
                ReferencedContainer = "container:AppwriteStarterKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "92EFE91F2CF9A50100D1DE48"
-               BuildableName = "CheckeredBackgroundUITests.xctest"
-               BlueprintName = "CheckeredBackgroundUITests"
+               BuildableName = "AppwriteStarterKitUITests.xctest"
+               BlueprintName = "AppwriteStarterKitUITests"
                ReferencedContainer = "container:AppwriteStarterKit.xcodeproj">
             </BuildableReference>
          </TestableReference>

@@ -75,7 +75,7 @@
 			packageProductDependencies = (
 				92ADF0502D09736D00BCCA85 /* Appwrite */,
 			);
-			productName = CheckeredBackground;
+			productName = AppwriteStarterKit;
 			productReference = 92EFE9062CF9A50000D1DE48 /* AppwriteStarterKit.app */;
 			productType = "com.apple.product-type.application";
 		};
