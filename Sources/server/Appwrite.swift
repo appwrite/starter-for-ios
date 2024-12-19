@@ -9,20 +9,20 @@ class AppwriteSDK: ObservableObject {
     private let databases: Databases
     
     /// Change these in Config.plist
-    private let PROJECT_ID: String
-    private let PROJECT_NAME: String
-    private let PUBLIC_APPWRITE_ENDPOINT: String
+    private let APPWRITE_PROJECT_ID: String
+    private let APPWRITE_PROJECT_NAME: String
+    private let APPWRITE_PUBLIC_ENDPOINT: String
     
     init() {
         let config = AppwriteSDK.loadConfig()
         
-        self.PROJECT_ID = config.projectId
-        self.PROJECT_NAME = config.projectName
-        self.PUBLIC_APPWRITE_ENDPOINT = config.endpoint
+        self.APPWRITE_PROJECT_ID = config.projectId
+        self.APPWRITE_PROJECT_NAME = config.projectName
+        self.APPWRITE_PUBLIC_ENDPOINT = config.endpoint
         
         client = Client()
-            .setProject(PROJECT_ID)
-            .setEndpoint(PUBLIC_APPWRITE_ENDPOINT)
+            .setProject(APPWRITE_PROJECT_ID)
+            .setEndpoint(APPWRITE_PUBLIC_ENDPOINT)
         
         account = Account(client)
         databases = Databases(client)
@@ -32,8 +32,8 @@ class AppwriteSDK: ObservableObject {
     func getProjectInfo() -> (endpoint: String, projectId: String, projectName: String, version: String) {
         return (
             client.endPoint,
-            PROJECT_ID,
-            PROJECT_NAME,
+            APPWRITE_PROJECT_ID,
+            APPWRITE_PROJECT_NAME,
             client.headers["x-appwrite-response-format"] ?? "1.6.0"
         )
     }
