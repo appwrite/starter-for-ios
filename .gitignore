@@ -13,6 +13,7 @@
 **/Build/
 DerivedData/
 *.ipa
+*.iml
 
 # Carthage
 Carthage/
