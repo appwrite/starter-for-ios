@@ -1,5 +1,7 @@
 import SwiftUI
 
+/// A view that displays two platform icons with a connection line in between,
+/// representing the connection status between the platforms.
 struct TopPlatformView: View {
     let status: Status
     
@@ -25,6 +27,7 @@ struct TopPlatformView: View {
     }
 }
 
+/// A reusable component that displays a rounded platform icon with customizable content.
 struct PlatformIcon<Content: View>: View {
     @ViewBuilder let content: () -> Content
 
@@ -63,7 +66,6 @@ struct PlatformIcon<Content: View>: View {
         .frame(width: 105, height: 105)
     }
 }
-
 
 @available(iOS 17.0, *)
 #Preview {
