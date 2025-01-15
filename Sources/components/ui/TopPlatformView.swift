@@ -6,8 +6,8 @@ struct TopPlatformView: View {
     let status: Status
     
     var body: some View {
-        HStack(spacing: 0) {
-            PlatformIcon {
+        HStack(spacing: -2.5) {
+            PlatformIcon(isAppwriteIcon: false) {
                 Image(systemName: "apple.logo")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -16,52 +16,60 @@ struct TopPlatformView: View {
             ConnectionLine(show: status == .success)
                 .frame(maxWidth: .infinity)
             
-            PlatformIcon {
+            PlatformIcon(isAppwriteIcon: true) {
                 Image("AppwriteIcon")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
         }
         .padding(8)
-        .padding(.horizontal, 16)
+        .padding(.horizontal, 40)
     }
 }
 
 /// A reusable component that displays a rounded platform icon with customizable content.
 struct PlatformIcon<Content: View>: View {
+    
+    let isAppwriteIcon: Bool
     @ViewBuilder let content: () -> Content
-
+    
     var body: some View {
         ZStack {
-            GeometryReader { geometry in
-                let outerCardSize = min(geometry.size.width, geometry.size.height)
+            // Card Content
+            ZStack {
+                // Outer Card
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(Color.white.opacity(0.32))
+                    .frame(width: 100, height: 100)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 24)
+                            .inset(by: 0.5)
+                            .stroke(Color(hex: "#19191C").opacity(0.04), lineWidth: 1)
+                    )
                 
-                // Card Content
-                ZStack {                    
-                    // Outer Card
-                    RoundedRectangle(cornerRadius: outerCardSize * 0.25)
-                        .foregroundColor(Color(hex: "#FAFAFD"))
-                        .shadow(color: Color.black.opacity(0.04), radius: outerCardSize * 0.1, x: 0, y: outerCardSize * 0.1)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: outerCardSize * 0.25)
-                                .stroke(Color(red: 238 / 255, green: 238 / 255, blue: 241 / 255), lineWidth: 1)
-                        )
-
-                    // Inner Card
-                    RoundedRectangle(cornerRadius: outerCardSize * 0.2)
-                        .foregroundColor(Color(hex: "#FFFFFF"))
-                        .shadow(color: Color.black.opacity(0.03), radius: outerCardSize * 0.12, x: 0, y: outerCardSize * 0.02)
-                        .frame(width: outerCardSize * 0.875, height: outerCardSize * 0.875)
-
-                    // Content
-                    content()
-                        .frame(
-                            width: outerCardSize * 0.525,
-                            height: outerCardSize * 0.525
-                        )
-                }
+                
+                
+                // Inner Card
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.white)
+                    .frame(width: 86.04652, height: 86.04652)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .inset(by: 0.5)
+                            .stroke(Color(hex: "#FAFAFB"), lineWidth: 1)
+                    )
+                    .shadow(color: .black.opacity(0.02), radius: 4, x: 0, y: 6)
+                    .shadow(color: .black.opacity(0.02), radius: 6, x: 0, y: 2)
+                
+                
+                // Content
+                content()
+                    .frame(
+                        width: isAppwriteIcon ? 37.86047 : 41.86047,
+                        height: isAppwriteIcon ? 37.86047 : 41.86047,
+                        alignment: .center
+                    )
             }
-            .aspectRatio(1, contentMode: .fit)
         }
         .frame(width: 105, height: 105)
     }
@@ -84,7 +92,7 @@ struct PlatformIcon<Content: View>: View {
                 /// Ping appwrite for a connection check
                 ConnectionStatusView(
                     logs: .constant([]),
-                    status: .constant(.idle)
+                    status: $status
                 )
                 
                 /// A list of info. cards
