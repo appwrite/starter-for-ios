@@ -22,7 +22,7 @@ Alternatively, open the repository URL in `Xcode` to clone it directly.
 ## 🛠️ Development Guide
 
 1. **Configure Appwrite**  
-Navigate to `Sources/server/Appwrite.swift` and update the values to match your Appwrite project credentials.  
+Navigate to `Sources/Config.plist` and update the values to match your Appwrite project credentials.  
 
 2. **Customize as Needed**  
 Modify the starter kit to suit your app's requirements. Adjust UI, features, or backend integrations as per your needs.  
