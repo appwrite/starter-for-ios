@@ -135,7 +135,7 @@ struct LogsBottomSheet: View {
                 }
             }.animation(.default, value: logs.count)
         }
-        .frame(maxHeight: OSScreen.main.bounds.height * 0.485)
+        .frame(maxHeight: (OSScreen.main?.bounds.height ?? 0) * 0.485)
     }
 }
 
