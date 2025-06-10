@@ -1,5 +1,13 @@
 import SwiftUI
 
+#if os(macOS)
+import AppKit
+public typealias OSScreen = NSScreen
+#elseif os(iOS) || os(tvOS) || os(watchOS) || os(visionOS)
+import UIKit
+public typealias OSScreen = UIScreen
+#endif
+
 /// A view that displays a collapsible bottom sheet showing logs. It includes a header with a
 /// title and a count of logs, and the content of the bottom sheet can be expanded or collapsed
 /// based on user interaction.
@@ -127,7 +135,7 @@ struct LogsBottomSheet: View {
                 }
             }.animation(.default, value: logs.count)
         }
-        .frame(maxHeight: UIScreen.main.bounds.height * 0.485)
+        .frame(maxHeight: OSScreen.main.bounds.height * 0.485)
     }
 }
 
